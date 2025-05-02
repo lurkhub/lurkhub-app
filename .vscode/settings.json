@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"wrangler.json": "jsonc"
+	},
+	"explorer.excludeGitIgnore": false,
+	"files.exclude": {
+		"**/.next": true,
+		"**/.vercel": true,
+		"**/.wrangler": true,
+		"**/node_modules": true,
+	}
+}

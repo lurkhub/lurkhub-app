@@ -1,0 +1,10 @@
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-details div {
+    display: flex;
+    justify-content: space-between;
+}
