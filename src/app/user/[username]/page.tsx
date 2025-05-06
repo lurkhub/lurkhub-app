@@ -158,23 +158,30 @@ function ProfileContent() {
 
             {posts.length > 0 && (
                 <div className="flex justify-between items-center pt-6">
-                    <button
-                        className="px-3 py-1 text-sm rounded disabled:opacity-50 bg-gray-200 hover:bg-gray-300"
-                        onClick={() => handlePageChange(pageNumber - 1)}
-                        disabled={pageNumber <= 1}
-                    >
-                        Previous
-                    </button>
+                    {pageNumber > 1 ? (
+                        <button
+                            className="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-300"
+                            onClick={() => handlePageChange(pageNumber - 1)}
+                        >
+                            Previous
+                        </button>
+                    ) : (
+                        <span className="px-3 py-1" />
+                    )}
 
                     <span className="text-sm font-medium">Page {pageNumber}</span>
 
-                    <button
-                        className="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-300"
-                        onClick={() => handlePageChange(pageNumber + 1)}
-                        disabled={posts.length < POSTS_PER_PAGE}
-                    >
-                        Next
-                    </button>
+                    {posts.length >= POSTS_PER_PAGE ? (
+                        <button
+                            className="px-3 py-1 text-sm rounded bg-gray-200 hover:bg-gray-300"
+                            onClick={() => handlePageChange(pageNumber + 1)}
+                        >
+                            Next
+                        </button>
+                    ) : (
+                        <span className="px-3 py-1" />
+                    )}
+
                 </div>
             )}
         </div>
