@@ -1,8 +1,8 @@
 'use client';
 
 import LoadingMessage from "@/components/common/LoadingMessage";
-import Start from "@/components/start";
-import Welcome from "@/components/welcome";
+import Start from "@/components/common/Start";
+import Welcome from "@/components/common/Welcome";
 import { fetchUser } from "@/services/userService";
 import { User } from "@/types/user";
 import { useEffect, useState } from "react";

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { Bookmark, FileText, Rss, User } from 'react-feather';
+import { Bookmark, Edit, FileText, Rss } from 'react-feather';
 
 export default function SearchPage() {
     const [query, setQuery] = useState('');
@@ -27,7 +27,7 @@ export default function SearchPage() {
         { icon: <Bookmark size={28} />, label: 'Bookmarks', path: '/bookmarks' },
         { icon: <FileText size={28} />, label: 'Articles', path: '/articles' },
         { icon: <Rss size={28} />, label: 'Feeds', path: '/feeds' },
-        { icon: <User size={28} />, label: 'Profile', path: '/profile' },
+        { icon: <Edit size={28} />, label: 'Posts', path: '/posts' },
     ];
 
     return (
