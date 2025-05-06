@@ -82,7 +82,7 @@ export async function fetchPublicApiFile(username: string, repo: string, path: s
 export async function fetchRawGithubFile(username: string, repo: string, branch: string, path: string): Promise<string | null> {
     const url = `https://raw.githubusercontent.com/${username}/${repo}/refs/heads/${branch}/${path}`;
 
-    const cache = await caches.open('github-raw');
+    const cache = await caches.open(cacheNames.github);
 
     const cachedResponse = await cache.match(url);
     const etag = cachedResponse?.headers.get('etag') ?? '';
