@@ -1,6 +1,6 @@
 import { repos } from '@/constants/repos';
 import { SessionData, sessionOptions } from '@/lib/session';
-import { checkRepoAccess } from '@/services/repoService';
+import { checkRepoAccess, createRepo } from '@/services/repoService';
 import { Octokit } from '@octokit/rest';
 import { getIronSession } from "iron-session";
 import { NextRequest, NextResponse } from 'next/server';
@@ -64,7 +64,24 @@ export async function GET(req: NextRequest) {
         const result = await checkRepoAccess(tokenData.access_token, r.owner, r.repo);
         console.log(result)
         if (!result.exists || !result.hasWriteAccess) {
-            return NextResponse.redirect(new URL("/check", req.url));
+
+            await createRepo({
+                accessToken: session.accessToken,
+                name: repos.data,
+                description: 'A private repo for bookmarks, articles, and feeds',
+                private: true,
+            });
+
+            await createRepo({
+                accessToken: session.accessToken,
+                name: repos.posts,
+                description: 'Public repo for posts',
+                private: false,
+            });
+
+            return res;
+
+            //return NextResponse.redirect(new URL("/check", req.url));
             //res.headers.set("Location", "/check");
 
             // res.headers.append(
@@ -72,7 +89,7 @@ export async function GET(req: NextRequest) {
             //     `setup=true; Path=/; SameSite=Lax; Secure`
             // );
 
-            return res;
+            //return res;
         }
     }
 
