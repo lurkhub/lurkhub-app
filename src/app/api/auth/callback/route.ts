@@ -64,12 +64,13 @@ export async function GET(req: NextRequest) {
         const result = await checkRepoAccess(tokenData.access_token, r.owner, r.repo);
         console.log(result)
         if (!result.exists || !result.hasWriteAccess) {
-            res.headers.set("Location", "/setup");
+            return NextResponse.redirect(new URL("/check", req.url));
+            //res.headers.set("Location", "/check");
 
-            res.headers.append(
-                "Set-Cookie",
-                `setup=true; Path=/; SameSite=Lax; Secure`
-            );
+            // res.headers.append(
+            //     "Set-Cookie",
+            //     `setup=true; Path=/; SameSite=Lax; Secure`
+            // );
 
             return res;
         }
